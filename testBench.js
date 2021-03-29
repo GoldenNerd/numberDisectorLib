@@ -19,7 +19,7 @@ const expValue=document.querySelector('#exp-value');
 // Global outcome variables
 let numSign;
 let numPortion;
-let integerPortion;
+let integerPart;
 let trailing0sCnt;
 let non0Core;
 let signifFigs;
@@ -32,7 +32,7 @@ let expSign;
 let expVal;
 
 
-function xtNumSign (){
+function signOfNumber (){
 if(userEntry.value<0){
 numSign='-';
 return numSign;}
@@ -42,30 +42,35 @@ return numSign;}
 numSign=null;
 return numSign;}
 
-function xtNumericPortion (){
+function coreNumber (){
+let userEntryAbsVal;
+if(userEntry.value<0 || userEntry.value.toString().slice(0,1)==='+'){
+userEntryAbsVal=userEntry.value.toString().slice(1,userEntry.value.toString(). length);
+}else{
+userEntryAbsVal=userEntry.value.toString().slice(0,userEntry.value.toString(). length);
+}
 let wholeNumStr;
 if(is_ePresent()){
-wholeNumStr=userEntry.value.toString();
+wholeNumStr=userEntryAbsVal.toString();
 const sliceStop=wholeNumStr.indexOf('e');
 numPortion=wholeNumStr.slice(0, sliceStop);
 return numPortion; // a string.
 }
-numPortion=userEntry.value.toString();
+numPortion=userEntryAbsVal.toString();
 return numPortion;
 }
 
-
-
-function xtIntCluster (){
-const numbStr=xtNumericPortion();  
+function integerPortion (){
+const numbStr=coreNumber();  
 if(is_dotPresent()){
 const sliceStop=numbStr.indexOf('.');
-integerPortion=numbStr.slice(0, sliceStop);
-return integerPortion;}
-integerPortion=numbStr;
-return integerPortion;}
+integerPart=numbStr.slice(0, sliceStop);
+return integerPart;}
+integerPart=numbStr;
+return integerPart;}
 
-function xtTrailing0s(num=xtIntCluster()){
+function trailingZeroes(num=integerPortion()){
+console.log({num});
 let zeroesCount=0;
 for (let digit of num) {
 if(digit==='-' || digit==='+'){
@@ -82,7 +87,7 @@ return trailing0sCnt;
 }
 
 function xtNon0Cluster(){
-let numbStr=xtNumericPortion();
+let numbStr=coreNumber();
 let absZeroStripped;
 let zeroStripped;
 if(numbStr<0){
@@ -110,7 +115,7 @@ function xtSigDigCnt (){
 sigDigCnt=signifFigs.length;
 return sigDigCnt;}
 
-function reverseNumCluster (num=xtNumericPortion()){
+function reverseNumCluster (num=coreNumber()){
 let reversedNumCluster='';
 for (var i = 0; i < num.length; i++) {
   reversedNumCluster=num[i].concat(reversedNumCluster);
@@ -136,7 +141,7 @@ return leading0s;
 
 function xtFractCluster (){
 if(is_dotPresent()){  
-let numbStr=xtNumericPortion();
+let numbStr=coreNumber();
 const sliceStop=numbStr.indexOf('.');
 fractCluster=numbStr.slice(sliceStop+1, numbStr.length);
 return fractCluster;}
@@ -204,7 +209,7 @@ echoedUserEntry.textContent=userEntry.value;
 
 numericSign.textContent=numSign;
 numericPart.innerText=numPortion;
-intPortion.innerText=integerPortion;
+intPortion.innerText=integerPart;
 leftmostZeroes.innerText=trailing0sCnt;
 dotSymbol.innerText=hasDot;
 decimalFraction.innerText=fractCluster;
@@ -226,7 +231,7 @@ echoedUserEntry.style.color='red';
 // Placeholder values:
 numericSign.textContent='numSign';
 numericPart.textContent='numPortion'; 
-intPortion.textContent='integerPortion';
+intPortion.textContent='integerPart';
 leftmostZeroes.textContent='trailing0sCnt';
 rightmostZeroes.innerText='leading0s';
 nonZeroClustered.textContent='non0Core';
@@ -251,10 +256,10 @@ return false;
 function disector (){
 if(userEntryIsInvalid()){
 return}
-xtNumSign();
-xtNumericPortion;
-xtIntCluster();
-xtTrailing0s();
+signOfNumber();
+coreNumber;
+integerPortion();
+trailingZeroes();
 xtNon0Cluster();
 xtSignifCluster();
 xtSigDigCnt();
