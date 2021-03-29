@@ -2,29 +2,29 @@
 // Grab doc elements
 const userEntry=document.querySelector('#user-entry');
 const numericSign=document.querySelector('#numeric-sign');
-const numericPart=document.querySelector('#numeric-part');
+const numericPortion=document.querySelector('#numeric-part');
 const echoedUserEntry=document.querySelector('#echoed-user-entry');
 const intPortion=document.querySelector('#integer-part');
 const leftmostZeroes=document.querySelector('#trailing-zeroes');
 const nonZeroClustered=document.querySelector('#non-zero-clustered');
-const significantFigures=document.querySelector('#significant-number');
+const signifFigures=document.querySelector('#significant-number');
 const significantCount=document.querySelector('#significant-count');
 const dotSymbol=document.querySelector('#dot-separator');
 const decimalFraction=document.querySelector('#decimal-fraction');
 const rightmostZeroes=document.querySelector('#leading-zeroes');
 const eDeclarator=document.querySelector('#e-declarator');
-const exponentialSign=document.querySelector('#exp-sign');
+const exponentSign=document.querySelector('#exp-sign');
 const expValue=document.querySelector('#exp-value');
 
 // Global outcome variables
 let numSign;
 let numPortion;
-let integerPart;
+let integerPortion;
 let trailing0sCnt;
-let non0Core;
+let non0Cluster;
 let signifFigs;
 let sigDigCnt;
-let hasDot;
+let hasADot;
 let fractCluster;
 let leading0s;
 let hasExp;
@@ -42,7 +42,7 @@ return numSign;}
 numSign=null;
 return numSign;}
 
-function coreNumber (){
+function numericPart (){
 let userEntryAbsVal;
 if(userEntry.value<0 || userEntry.value.toString().slice(0,1)==='+'){
 userEntryAbsVal=userEntry.value.toString().slice(1,userEntry.value.toString(). length);
@@ -60,16 +60,16 @@ numPortion=userEntryAbsVal.toString();
 return numPortion;
 }
 
-function integerPortion (){
-const numbStr=coreNumber();  
+function integerPart (){
+const numbStr=numericPart();  
 if(is_dotPresent()){
 const sliceStop=numbStr.indexOf('.');
-integerPart=numbStr.slice(0, sliceStop);
-return integerPart;}
-integerPart=numbStr;
-return integerPart;}
+integerPortion=numbStr.slice(0, sliceStop);
+return integerPortion;}
+integerPortion=numbStr;
+return integerPortion;}
 
-function trailingZeroes(num=integerPortion()){
+function trailingZeroesCount(num=integerPart()){
 console.log({num});
 let zeroesCount=0;
 for (let digit of num) {
@@ -86,21 +86,21 @@ trailing0sCnt=zeroesCount;
 return trailing0sCnt;
 }
 
-function xtNon0Cluster(){
-let numbStr=coreNumber();
+function numericNonZeroCore(){
+let numbStr=numericPart();
 let absZeroStripped;
 let zeroStripped;
 if(numbStr<0){
 absZeroStripped=(-1)*numbStr;
-non0Core=absZeroStripped;
-return non0Core;}
+non0Cluster=absZeroStripped;
+return non0Cluster;}
 zeroStripped=1*numbStr;
-non0Core=zeroStripped;
-return non0Core;}
+non0Cluster=zeroStripped;
+return non0Cluster;}
 
 // @
-function xtSignifCluster (){
-const non0Cluster=xtNon0Cluster();
+function significantFigures (){
+const non0Cluster=numericNonZeroCore();
 let non0ClusterStr=non0Cluster.toString();
 const firstDigit=non0ClusterStr.slice(0,1);
 if(firstDigit==='0'){
@@ -111,18 +111,18 @@ const newStr=non0ClusterStr.slice(0,dotIndex).concat(non0ClusterStr.slice(dotInd
 signifFigs=newStr;
 return signifFigs;}
 
-function xtSigDigCnt (){
+function sigFiguresCount (){
 sigDigCnt=signifFigs.length;
 return sigDigCnt;}
 
-function reverseNumCluster (num=coreNumber()){
+function reverseNumCluster (num=numericPart()){
 let reversedNumCluster='';
 for (var i = 0; i < num.length; i++) {
   reversedNumCluster=num[i].concat(reversedNumCluster);
 }
 return reversedNumCluster;}
 
-function xtLeading0s (){
+function leadingZeroesCount (){
 const reversedNumCluster=reverseNumCluster();
 let zeroesCount=0;
 for (let digit of reversedNumCluster) {
@@ -139,9 +139,9 @@ leading0s=zeroesCount;
 return leading0s;
 }
 
-function xtFractCluster (){
+function fractionalPart (){
 if(is_dotPresent()){  
-let numbStr=coreNumber();
+let numbStr=numericPart();
 const sliceStop=numbStr.indexOf('.');
 fractCluster=numbStr.slice(sliceStop+1, numbStr.length);
 return fractCluster;}
@@ -153,21 +153,21 @@ if(userEntry.value.toString().includes('.')){
 return true;}
 return false;}
 
-function xtHasDot (){
+function hasDot (){
 if(is_dotPresent()){
 // yes
-hasDot=true;
-return hasDot;}
+hasADot=true;
+return hasADot;}
 //no
-hasDot=false;
-return hasDot;}
+hasADot=false;
+return hasADot;}
 
 function is_ePresent (){
 if(userEntry.value.toString().includes('e')){
 return true;}
 return false;}
 
-function xtHasExp (){
+function hasExponential (){
 if(is_ePresent()){
 // yes
 hasExp=true;
@@ -176,7 +176,7 @@ return hasExp;}
 hasExp=false;
 return hasExp;}
 
-function xtExpSign (){
+function exponentialSign (){
 const wholeNumStr=userEntry.value.toString();
 if(!wholeNumStr.includes('e')){
 expSign=null;
@@ -190,7 +190,7 @@ return expSign;}
 expSign='+';
 return expSign;}
 
-function xtExpVal (){
+function exponentialValue (){
 if(!is_ePresent()){
 expVal=null;
 return expVal;}
@@ -208,73 +208,68 @@ function reportDisectionOutcome(){
 echoedUserEntry.textContent=userEntry.value;
 
 numericSign.textContent=numSign;
-numericPart.innerText=numPortion;
-intPortion.innerText=integerPart;
+numericPortion.innerText=numPortion;
+intPortion.innerText=integerPortion;
 leftmostZeroes.innerText=trailing0sCnt;
-dotSymbol.innerText=hasDot;
+dotSymbol.innerText=hasADot;
 decimalFraction.innerText=fractCluster;
 rightmostZeroes.innerText=leading0s;
-nonZeroClustered.textContent=non0Core;
-significantFigures.textContent=signifFigs;
+nonZeroClustered.textContent=non0Cluster;
+signifFigures.textContent=signifFigs;
 significantCount.textContent=sigDigCnt;
 eDeclarator.textContent=hasExp;
-exponentialSign.textContent=expSign;
+exponentSign.textContent=expSign;
 expValue.textContent=expVal;
 }
 
 function reportInvalidUserEntry (){
 // Actual error:
-echoedUserEntry.textContent=`Entry is NaN`;
+echoedUserEntry.textContent=`Wrong or No Entry`;
 echoedUserEntry.style.color='red';
 
 
 // Placeholder values:
 numericSign.textContent='numSign';
-numericPart.textContent='numPortion'; 
-intPortion.textContent='integerPart';
+numericPortion.textContent='numPortion'; 
+intPortion.textContent='integerPortion';
 leftmostZeroes.textContent='trailing0sCnt';
-rightmostZeroes.innerText='leading0s';
-nonZeroClustered.textContent='non0Core';
-significantFigures.textContent='signifFigs';
+rightmostZeroes.textContent='leading0s';
+nonZeroClustered.textContent='non0Cluster';
+signifFigures.textContent='signifFigs';
 significantCount.textContent='sigDigCnt';
-dotSymbol.textContent='hasDot';
+dotSymbol.textContent='hasADot';
 decimalFraction.textContent='fractCluster';
 eDeclarator.textContent='hasExp';
-exponentialSign.textContent='expSign';
+exponentSign.textContent='expSign';
 expValue.textContent='expVal';
 }
 
-function userEntryIsInvalid (){
-if(isNaN(userEntry.value)||(userEntry.value==='')){
+function userEntryIsValid (){
+if(isNaN(userEntry.value)||(userEntry.value===''|| (userEntry.value).toString().slice(0,1)==='.')){
 reportInvalidUserEntry();
-return true;
+return false;
 }
 echoedUserEntry.style.color='yellow';
-return false;
+return true;
 }
 
 function disector (){
-if(userEntryIsInvalid()){
+if(!userEntryIsValid ()){
 return}
 signOfNumber();
-coreNumber;
-integerPortion();
-trailingZeroes();
-xtNon0Cluster();
-xtSignifCluster();
-xtSigDigCnt();
-xtHasDot();
-xtFractCluster();
-xtLeading0s();
-xtHasExp();
-xtExpSign();
-xtExpVal();
+numericPart;
+integerPart();
+trailingZeroesCount();
+numericNonZeroCore();
+significantFigures();
+sigFiguresCount();
+hasDot();
+fractionalPart();
+leadingZeroesCount();
+hasExponential();
+exponentialSign();
+exponentialValue();
 reportDisectionOutcome();
 }
-
-// Test
-function test (){
-
-}
-const testBtn=document.querySelector ('#test-btn');
-testBtn.addEventListener('click', disector);
+const disectBtn=document.querySelector ('#disect-button');
+disectBtn.addEventListener('click', disector);
