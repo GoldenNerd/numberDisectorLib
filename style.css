@@ -7,23 +7,43 @@ background-image: linear-gradient(to bottom left, purple, green, blue);
 }
 
 h2 {
-outline: 1px solid transparent ;
-text-align: center;
+outline: 1px solid transparent;
+display: block;
+margin-bottom: 0.5rem;
+margin-left: 3rem;
+}
+
+p {
+margin-left: 0.5rem;
 }
 
 span {
 font-weight: bolder;
 color: yellow;
 }
- 
-#test-btn {
+
+label {
+display: inline-block;
+margin-bottom: 0;
+margin-left: 1rem;
+}
+#advice {
 display: block;
-margin: 0.5rem 0 0 5rem;
+margin: 0 auto 0.75rem 2.2rem;
+}
+#disect-button {
+display: inline-block;
+margin: 0 0 0 1rem;
 background-color: #4f1e9c;
 border:1px solid #ffd400 ;
 border-radius: 15%;
 font-size: 1rem;
 font-weight: bolder;
-padding: 0.5rem;
+padding: 0.2rem;
 color: yellow ;
+}
+
+#user-entry {
+margin-top: 0.5rem;
+margin-left: 1rem;
 }
