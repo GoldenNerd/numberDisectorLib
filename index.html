@@ -8,100 +8,104 @@
   <title>Disect Number</title>
 </head>
 <body>
- 
-<div id="disector-container">
-  
- <h2 id="tittle">Numbers Disector</h2>
 
- <p>Number to Disect: 
+<div id="disector-container">
+ 
+<h2 id="tittle">Numbers Disector</h2>
+
+<input type="text" placeholder="User Entry" id="user-entry" />
+<input type="button" name="" id="disect-button" value="DISECT" />
+<label for="user-entry">
+  ⚠ Leftmost digit must not be a dot.
+</label>
+<p id="advice">Bad numbers: 0, 0., 0.0</p>
+
+
+ <p>userEntryIsValid( ) --> 
   <span id="echoed-user-entry">
-    User Entry
+    echoedUserEntry
   </span>
  </p>
  
- <p>Numeric Sign: 
+ <p>signOfNumber( ) --> 
   <span id="numeric-sign">
     numSign
   </span>
  </p>
   
- <p>Numeric Portion: 
+ <p>numericPart( ) --> 
   <span id="numeric-part">
     numPortion
   </span>
  </p>
  
- <p>Integer Portion: 
+ <p>integerPart( ) --> 
   <span id="integer-part">
     integerPortion
   </span>
  </p>
  
- <p>Trailing Zeroes Count: 
+ <p>trailingZeroesCount( ) --> 
   <span id="trailing-zeroes">
-    trailing0sCnt 
+    trailing0sCnt
   </span>
  </p>
   
- <p>Non-Zero Core: 
+ <p>numericNonZeroCore( ) --> 
   <span id="non-zero-clustered">
-    non0Core
+    non0Cluster
   </span>
  </p>
   
-  <p>Significant figures: 
+  <p>significantFigures( ) --> 
   <span id="significant-number">
     signifFigs
   </span>
  </p>
   
-  <p>Significant Digits Count: 
+  <p>significantFiguresCount( ) --> 
   <span id="significant-count">
     sigDigCnt
   </span>
  </p>
  
- <p>Contains a dot: 
+ <p>hasDot( ) --> 
   <span id="dot-separator">
-    hasDot
+    hasADot
   </span>
  </p> 
 
- <p>Decimal Part: 
+ <p>fractionalPart( ) --> 
   <span id="decimal-fraction">
     fractCluster
   </span>
  </p>
 
- <p>Leading Zeroes Count: 
+ <p>leadingZeroesCount( ) --> 
   <span id="leading-zeroes">
     leading0s
   </span>
  </p>
  
- <p>Contains an e:  
+ <p>hasExponential( ) --> 
   <span id="e-declarator">
     hasExp
   </span>
  </p>
 
- <p>Exponential Sign: 
+ <p>exponentialSign( ) --> 
   <span id="exp-sign">
     expSign
   </span>
  </p> 
 
- <p>Exponential Value: 
+ <p>exponentialValue( ) --> 
   <span id="exp-value">
     expVal
   </span>
  </p>
- 
+
 </div>
-<label for="user-entry">
-<input type="text" placeholder="Num" id="user-entry" /> Number Entry
-</label>
-<input type="button" name="" id="test-btn" value="TEST" />
 
 <script type="text/javascript" src="testBench.js"></script>
 </body>
