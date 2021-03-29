@@ -9,6 +9,7 @@ background-image: linear-gradient(to bottom left, purple, green, blue);
 h2 {
 outline: 1px solid transparent;
 display: block;
+margin-top: 1rem;
 margin-bottom: 0.5rem;
 margin-left: 3rem;
 }
