@@ -4,35 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
-  <title>Disect Number</title>
+  <link rel="stylesheet" href="ExtractAllAndViewV1.0.css" type="text/css" media="all" />
+  <title>Extractor and Viewer of Number Properties</title>
 </head>
 <body>
 
 <div id="disector-container">
- 
-<h2 id="tittle">Numbers Disector</h2>
 
-<input type="text" placeholder="User Entry" id="user-entry" />
-<input type="button" name="" id="disect-button" value="DISECT" />
-<label for="user-entry">
-  ⚠ Leftmost digit must not be a dot.
-</label>
-<p id="advice">Bad numbers: 0, 0., 0.0</p>
+<h2 id="tittle">Extractor and Viewer of Number Properties</h2>
 
+<input type="text" placeholder="Any Number Here" value="+011e-2" id="user-entry" />
 
- <p>userEntryIsValid( ) --> 
-  <span id="echoed-user-entry">
-    echoedUserEntry
+<input type="button" id="disect-button" value="EXTRACT" />
+
+ <p>echoedUserEntry( ) --> 
+  <span id="echoed-entered-value">
+    echoedEnteredValue
+  </span>
+ </p>
+
+ <p>algebraicSign( ) --> 
+  <span id="implied-sign">
+    impliedSign
   </span>
  </p>
  
- <p>signOfNumber( ) --> 
-  <span id="numeric-sign">
-    numSign
+ <p>hasASign( ) --> 
+  <span id="sign-declarator">
+    hasSign
   </span>
- </p>
-  
+ </p> 
+ 
+ <p>fetchTheSign( ) --> 
+  <span id="sign-separator">
+    fetchedSign
+  </span>
+ </p> 
+
  <p>numericPart( ) --> 
   <span id="numeric-part">
     numPortion
@@ -51,7 +59,7 @@
   </span>
  </p>
   
- <p>numericNonZeroCore( ) --> 
+ <p>zeroTrimmedCore( ) --> 
   <span id="non-zero-clustered">
     non0Cluster
   </span>
@@ -69,9 +77,15 @@
   </span>
  </p>
  
- <p>hasDot( ) --> 
+ <p>hasADot( ) --> 
+  <span id="dot-declarator">
+    hasDot
+  </span>
+ </p> 
+
+ <p>fetchTheDot( ) --> 
   <span id="dot-separator">
-    hasADot
+    fetchedDot
   </span>
  </p> 
 
@@ -87,17 +101,23 @@
   </span>
  </p>
  
- <p>hasExponential( ) --> 
+ <p>hasAnE( ) --> 
   <span id="e-declarator">
     hasExp
   </span>
  </p>
 
+ <p>fetchTheE( ) --> 
+  <span id="e-separator">
+    fetchedE
+  </span>
+ </p> 
+
  <p>exponentialSign( ) --> 
   <span id="exp-sign">
     expSign
   </span>
- </p> 
+ </p>
 
  <p>exponentialValue( ) --> 
   <span id="exp-value">
@@ -105,8 +125,21 @@
   </span>
  </p>
 
+ <p>exponentialWhole( ) --> 
+  <span id="exp-whole">
+    expWhole
+  </span>
+ </p>
+ 
+<pre>
+Revision Information:
+html 1.1 2021-04-03.00
+css  1.0 2021-04-03.00
+js   1.1 2021-04-03.00
+(functional implementation)
+</pre>
 </div>
 
-<script type="text/javascript" src="testBench.js"></script>
+<script type="text/javascript" src="ExtractAllAndViewV1.1.js"></script>
 </body>
 </html>
