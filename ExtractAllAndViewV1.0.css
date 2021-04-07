@@ -1,9 +1,15 @@
+/*
+Revision Information:
+html 1.0 2021-04-03.00
+css  1.0 2021-04-03.00
+js   1.0 2021-04-03.00
+*/
 body {
 width: 100vw;
-height: 100vh;
+height: 130vh;
 font-weight: bold;
 color:white ;
-background-image: linear-gradient(to bottom left, purple, green, blue);
+background-image: linear-gradient(to right top, darkgreen 0%,  red 50% , teal 0%);
 }
 
 h2 {
