@@ -145,20 +145,20 @@ return non0Cluster;}
 non0Cluster=(1*numbStr).toString();
 return non0Cluster;}
 
-// +011e-2
+// +011e-2   @
 function significantFigures (){
 const alphamericCoreStr=numericPart(); 
 // Any number of only zeroes with a dot somewhere:
 if(1*alphamericCoreStr===0 && alphamericCoreStr.includes('.')){ 
-signifFigs=0+fractionalPart();
+signifFigs='0'+fractionalPart(); // Leftmost 0 is implied. Therefore, correct the original user entry.
 return signifFigs;}
-// Any number of only zeroes with no dot anywhere:
+// Any number of only zeroes with no dot anywhere: 
 if(1*alphamericCoreStr===0 && !alphamericCoreStr.includes('.')){
 signifFigs='0';
 return signifFigs;}
 // Non-zero valued numeric part that starts with a dot:
 if(alphamericCoreStr.slice(0,1)==='.'){
-signifFigs=fractionalPart();
+signifFigs='0'+fractionalPart();
 return signifFigs;}
 let non0ClusterStr=zeroTrimmedCore();
 // Any other except previous "returns", that contain a dot somewhere:
@@ -175,7 +175,7 @@ function sigFiguresCount (){
 sigDigCnt=significantFigures().length;
 return sigDigCnt;}
 
-function reverseNumCluster (){ // @
+function reverseNumCluster (){
 const numStr=numericPart();
 let reversedNumCluster='';
 for (var i = 0; i < numStr.length; i++) {
@@ -184,9 +184,14 @@ for (var i = 0; i < numStr.length; i++) {
 return reversedNumCluster;}
 
 function leadingZeroesCount (){
+if(!numericPart().includes('.')){
+leading0s=0;
+/*
 if(userEntry.value==='0'){
 leading0s=0;
+*/
 return leading0s;}
+
 const reversedNumCluster=reverseNumCluster();
 let zeroesCount=0;
 for (let digit of reversedNumCluster) {
